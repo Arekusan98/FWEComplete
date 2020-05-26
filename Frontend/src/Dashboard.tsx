@@ -18,7 +18,7 @@ export interface Recipe {
 export const Dashboard = () => {
   const [recipes, setRecipes] = useState<AllRecipesResponse | null>(null);
   const fetchRecipes = async () => {
-    const recipeRequest = await fetch("localhost:3000/api/recipe");
+    const recipeRequest = await fetch("http://localhost:3000/api/recipe");
     const recipeJson = (await recipeRequest.json()) as AllRecipesResponse;
     console.log(recipeJson);
     setRecipes(recipeJson);

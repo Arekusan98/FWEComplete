@@ -44,28 +44,30 @@ export const RecipeDetail : React.FC<{recipeId : number}> = ({recipeId}) => {
 
   useEffect(() => {
     fetchRecipe();
+    fetchIngredients();
   }, []);
 
   if(recipe === null){
       return <EmptyMessage></EmptyMessage>
   }
+  console.log(ingredients);
 
   if(ingredients === null){
       return <EmptyMessage/>
   }
 
-  var ingredientObjects : any[] = [];
-  ingredients.forEach(ingredient => {
-    ingredients.push(<GenerateIngredient ingredient={ingredient}></GenerateRecipe>);
-  });
+    var ingredientObjects : any[] = [];
+    ingredients?.forEach(ingredient => {
+    ingredientObjects.push(<GenerateIngredient ingredient={ingredient} recipe={recipe}></GenerateIngredient>);
+    });
 
-  return <GenerateRecipe recipe={recipe}></GenerateRecipe>
+  return <><GenerateRecipe recipe={recipe}>{ingredientObjects}</GenerateRecipe><AddIngredient></AddIngredient></>
     
 }
 
 const EmptyMessage : React.FC<{}> = ({children}) => {
     return <div>Es gibt kein Rezept!</div>
-  }
+}
 
 const GenerateRecipe : React.FC<{recipe : Recipe}> = ({children, recipe}) => {
     return <section className="recipe" id={recipe.id.toString()+"recipe"}>
@@ -79,14 +81,62 @@ const GenerateRecipe : React.FC<{recipe : Recipe}> = ({children, recipe}) => {
     <section className="recipeServingSizeValue">{recipe.servingSize}</section>
     <section className="recipeAuthor">Autor: </section>
     <section className="recipeAuthorValue">{recipe.author}</section>
+    {children}
     </section>
   }
 
-const GenerateIngredient : React.FC<{ingredient : Ingredient}> = ({children, ingredient}) => {
+const GenerateIngredient : React.FC<{ingredient : Ingredient, recipe: Recipe}> = ({children, ingredient, recipe}) => {
     return <>
     <section className="ingredient" id={ingredient.id.toString()+"ingredient"}>
     <section className="ingredientName">Name: </section>
     <section className="ingredientNameValue">{ingredient.name}</section>
     </section>
+    <IngredientAmount ingredientId={ingredient.id} recipeId={recipe.id}></IngredientAmount>
     </>
+}
+
+export interface IngredientToRecipeResponse {
+    data: IngredientToRecipe[];
+}
+
+export interface IngredientToRecipe {
+    ingredientToRecipeId: number,
+    ingredientId: number,
+    recipeId: number,
+    amount: string
+}
+
+
+export const IngredientAmount : React.FC<{recipeId : number, ingredientId: number}> = ({recipeId, ingredientId}) => {
+    const [ingredientToRecipe, setIngredientToRecipe] = useState<IngredientToRecipe[] | null>(null);
+    const fetchIngredientToRecipe = async () => {
+        const ingredientToRecipeRequest = await fetch("http://localhost:3000/api/ingredientsToRecipe/recipe/"+recipeId+"/ingredient/"+ingredientId);
+        const ingredientsToRecipeResponse = (await ingredientToRecipeRequest.json()) as IngredientToRecipeResponse
+        setIngredientToRecipe(ingredientsToRecipeResponse.data);
+    }
+    
+  useEffect(() => {
+    fetchIngredientToRecipe();
+  }, []);
+
+  if(ingredientToRecipe === null){
+    return <EmptyMessage></EmptyMessage>;
+  }
+
+  return <><div>{ingredientToRecipe[0].amount}</div></>
+  
+}
+
+export const AddIngredient = () => {
+    const [showUseEffect, setShowUseEffect] = useState(false);
+    return <>
+    <button onClick={() => {
+        setShowUseEffect(!showUseEffect);
+    }}>Zutat hinzufügen</button>
+    {showUseEffect && <AddIngredientInterface />}
+    </>;
+    }
+
+export const AddIngredientInterface = () => {
+    return <><div>asfadfkasklfkl</div></>
 }

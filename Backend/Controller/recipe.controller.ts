@@ -33,8 +33,8 @@ export const getAllRecipes = async (req: Request, res: Response) => {
 
 export const getRecipeById = async (req: Request, res: Response) => {
     const id = req.params.recipeId;
-    const recipeRepository = await getRepository(Recipe);
-    const recipe = recipeRepository.findOne({where: {id : id}});
+    const recipeRepository: Repository<Recipe> = await getRepository(Recipe);
+    const recipe = await recipeRepository.findOne({where: {id : id}});
     res.send({data:recipe});
 };
 

@@ -37,7 +37,7 @@ exports.getAllRecipes = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.getRecipeById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.recipeId;
     const recipeRepository = yield typeorm_1.getRepository(Recipe_1.Recipe);
-    const recipe = recipeRepository.findOne({ where: { id: id } });
+    const recipe = yield recipeRepository.findOne({ where: { id: id } });
     res.send({ data: recipe });
 });
 exports.updateRecipeById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

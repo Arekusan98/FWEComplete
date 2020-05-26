@@ -3,11 +3,12 @@ import "reflect-metadata";
 import { createDatabaseConnection } from './Util/CreateDatabaseConnection';
 import { globalRouter } from './Router/global.router';
 import * as bodyParser from 'body-parser';
-
+var cors = require('cors');
 require('dotenv-safe').config();
 export const startServer = async () => {
   const app = express();
   app.use(bodyParser.json());
+  app.use(cors());
   const port: number = Number(process.env.PORT);
 
   const dbConnection = await createDatabaseConnection();

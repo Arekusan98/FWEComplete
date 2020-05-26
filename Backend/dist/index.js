@@ -37,10 +37,12 @@ require("reflect-metadata");
 const CreateDatabaseConnection_1 = require("./Util/CreateDatabaseConnection");
 const global_router_1 = require("./Router/global.router");
 const bodyParser = __importStar(require("body-parser"));
+var cors = require('cors');
 require('dotenv-safe').config();
 exports.startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
     app.use(bodyParser.json());
+    app.use(cors());
     const port = Number(process.env.PORT);
     const dbConnection = yield CreateDatabaseConnection_1.createDatabaseConnection();
     app.use('/api', global_router_1.globalRouter);

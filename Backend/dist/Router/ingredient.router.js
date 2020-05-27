@@ -7,6 +7,7 @@ exports.ingredientRouter = express_1.Router({ mergeParams: true });
 exports.ingredientRouter.post('/', ingredients_controller_1.createIngredient);
 exports.ingredientRouter.get('/', ingredients_controller_1.getAllIngredients);
 exports.ingredientRouter.get('/:ingredientId', ingredients_controller_1.getIngredientById);
+exports.ingredientRouter.get('/name/:ingredientName', ingredients_controller_1.getIngredientByName);
 exports.ingredientRouter.patch('/:ingredientId', ingredients_controller_1.updateIngredientById);
 exports.ingredientRouter.delete('/:ingredientId', ingredients_controller_1.deleteIngredientById);
 //# sourceMappingURL=ingredient.router.js.map

@@ -1,36 +1,37 @@
+import { Recipe, RecipeRequest } from "./Interfaces/Recipe";
 import React, { useState } from "react";
-import { Recipe, RecipeResponse, RecipeRequest } from "./Interfaces/Recipe";
 
-export const AddRecipe = () => {
+export const EditRecipe : React.FC<{recipe: Recipe, editHandler: Function}> = ({children, recipe, editHandler}) => {
     const [showUseEffect, setShowUseEffect] = useState(false);
     return <>
-    <section className="addRecipeFormContainer">
-    <button className="addRecipeButton" onClick={() => {
+    <section className="editRecipeFormContainer">
+    <button className="editRecipeButton" onClick={() => {
         setShowUseEffect(!showUseEffect);
-    }}>Rezept hinzufügen</button>
-    {showUseEffect && <AddNewRecipeInterface />}
+    }}>Rezept bearbeiten</button>
+    {showUseEffect && <EditRecipeInterface recipe={recipe} editHandler={editHandler}/>}
     </section></>;
-}
+    }
 
-const AddNewRecipeInterface = () => {
+const EditRecipeInterface : React.FC<{recipe: Recipe, editHandler: Function}> = ({children, recipe, editHandler}) => {
     return <>
-    <form className="addRecipeForm">
+    <form className="editRecipeForm">
         <label>Name</label>
-        <input type="text" name="name"></input>
+        <input type="text" name="name" defaultValue={recipe.name}></input>
         <label>Kochanweisungen</label>
-        <input type="textarea" name="instructions"></input>
+        <input type="textarea" name="instructions" defaultValue={recipe.cookingInstructions}></input>
         <label>Autor</label>
-        <input type="text" name="author"></input>
+        <input type="text" name="author" defaultValue={recipe.author}></input>
         <label>Bewertung</label>
-        <input type="number" name="rating"></input>
+        <input type="number" name="rating" defaultValue={recipe.rating}></input>
         <label>Portionsgröße</label>
-        <input type="number" name="size"></input>
-        <button type="button" onClick={(e)=>{validateAndSave(e.currentTarget.parentElement)}}>Speichern</button>
+        <input type="number" name="size" defaultValue={recipe.servingSize}></input>
+        <button type="button" onClick={(e)=>{updateRecipe(e.currentTarget.parentElement, recipe.id).then(editHandler())}}>Speichern</button>
     </form>
     </>
 }
 
-function validateAndSave(recipeForm :HTMLElement | null){
+
+async function updateRecipe(recipeForm :HTMLElement | null, recipeId: number){
     if(recipeForm === null){
         return;
     }
@@ -65,14 +66,14 @@ function validateAndSave(recipeForm :HTMLElement | null){
             }
         }
     }
-    addRecipeToDatabase(jsonRequestBody);
+    await updateRecipeOnDatabase(jsonRequestBody, recipeId);
 }
 
-const addRecipeToDatabase = async (jsonRequestBody: RecipeRequest) => {
+const updateRecipeOnDatabase = async (jsonRequestBody: RecipeRequest, recipeId: number) => {
     const requestOptions = {
-        method: 'POST',
+        method: 'PATCH',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(jsonRequestBody)
       }
-      await fetch("http://localhost:3000/api/recipe/", requestOptions).then(response => response.json());
+      await fetch("http://localhost:3000/api/recipe/"+recipeId, requestOptions).then(response => response.json());
 }

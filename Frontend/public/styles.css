@@ -1,0 +1,332 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header{
+font-size: large;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+text-align: center;
+}
+
+.recipe{
+    display: grid;
+    grid-template-columns: 35% 60%;
+    background-color: paleturquoise;
+    border-radius: 7px;
+    margin: 1em;
+    padding: 1em;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 40vw 60vw;
+    
+}
+
+.recipeContainer{
+    grid-column:2;
+    display: grid;
+}
+
+.recipeName{
+    grid-row: 1;
+    grid-column: 1;
+}
+.recipeNameValue{
+    grid-row: 1;
+    grid-column: 2;
+}
+.recipeInstructions{
+    grid-row: 2;
+    grid-column: 1;
+}
+.recipeInstructionsValue{
+    grid-row: 2;
+    grid-column: 2;
+}
+.recipeRating{
+    grid-row: 3;
+    grid-column: 1;
+}
+.recipeRatingValue{
+    grid-row: 3;
+    grid-column: 2;
+}
+.recipeServingSize{
+    grid-row: 4;
+    grid-column: 1;
+}
+.recipeServingSizeValue{
+    grid-row: 4;
+    grid-column: 2;
+}
+.recipeAuthor{
+    grid-row: 5;
+    grid-column: 1;
+}
+.recipeAuthorValue{
+    grid-row: 5;
+    grid-column: 2;
+}
+
+.ingredients{
+    display: grid;
+    grid-template-columns: auto 20vw auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.ingredient{
+    grid-column: 2;
+    display:grid;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: white;
+    width: auto;
+}
+
+.ingredientName{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.ingredientNameValue{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.ingredientAmount{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.ingredientAmountValue{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.recipeButtons{
+    margin-top:1em;
+    text-align: center;
+    grid-row: 6;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.recipeButtons button{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: transparent;
+    border: solid;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.recipeButtons button:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: white;
+    border: solid lightgray;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addRecipeFormContainer{
+    grid-column: 1;
+    grid-row:1;
+}
+
+.addRecipeButton{
+
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addRecipeButton:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    opacity: 0.5;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addRecipeForm{
+    display: grid;
+    width: 100%;
+}
+.addRecipeForm input{
+    padding: 0.7em;;
+}
+
+.addRecipeForm button{
+    margin-top:0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addRecipeForm button:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    opacity: 0.5;
+    color:white;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addIngredientFormContainer{
+grid-column:1;
+grid-row:1;
+}
+
+.addIngredientForm{
+    display: grid;
+    width: 100%;
+}
+.addIngredientForm input{
+    padding: 0.7em;;
+}
+
+.addIngredientForm button{
+    margin-top:0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addIngredientForm button:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    opacity: 0.5;
+    color:white;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addIngredientButton{
+
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.addIngredientButton:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    opacity: 0.5;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.deleteIngredientButton{
+    grid-column-start:1;
+    grid-column-end:3;
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: red;
+    color:white;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.deleteIngredientButton:hover {
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: red;
+    color:white;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    opacity: 0.5;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.editRecipeFormContainer{
+    grid-column: 1;
+    grid-row:2;
+}
+
+.editRecipeButton{
+
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.editRecipeButton:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    opacity: 0.5;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.editRecipeForm{
+    display: grid;
+    width: 100%;
+}
+.editRecipeForm input{
+    padding: 0.7em;;
+}
+
+.editRecipeForm button{
+    margin-top:0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}
+
+.editRecipeForm button:hover{
+    margin-left: 0.5em;
+    margin-right: 0.5em;    
+    background-color: limegreen;
+    border: solid lightgray 1px;
+    opacity: 0.5;
+    color:white;
+    border-radius: 5px;
+    padding:0.75em;
+    transition: 0.3s;
+}

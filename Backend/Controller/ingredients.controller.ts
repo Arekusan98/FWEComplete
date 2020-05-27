@@ -69,6 +69,19 @@ export const getIngredientById = async (req:Request, res:Response) => {
       res.send({data:ingredient});
 }
 
+export const getIngredientByName = async (req:Request, res:Response) => {
+  const ingredientName = req.params.ingredientName;
+  const ingredientRepository = await getRepository(Ingredient);
+  const ingredient = await ingredientRepository.findOne({
+      where: {
+        name : ingredientName,
+      },
+    });
+    res.send({data:ingredient});
+}
+
+
+
 export const deleteIngredientById = async(req:Request, res:Response) => {
     const ingredientId = req.params.ingredientId;
     const ingredientRepository = await getRepository(Ingredient);

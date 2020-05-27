@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteIngredientById = exports.getIngredientById = exports.getAllIngredients = exports.updateIngredientById = exports.createIngredient = void 0;
+exports.deleteIngredientById = exports.getIngredientByName = exports.getIngredientById = exports.getAllIngredients = exports.updateIngredientById = exports.createIngredient = void 0;
 const typeorm_1 = require("typeorm");
 const Ingredient_1 = require("../Entity/Ingredient");
 exports.createIngredient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -63,6 +63,16 @@ exports.getIngredientById = (req, res) => __awaiter(void 0, void 0, void 0, func
     const ingredient = yield ingredientRepository.findOne({
         where: {
             id: ingredientId,
+        },
+    });
+    res.send({ data: ingredient });
+});
+exports.getIngredientByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const ingredientName = req.params.ingredientName;
+    const ingredientRepository = yield typeorm_1.getRepository(Ingredient_1.Ingredient);
+    const ingredient = yield ingredientRepository.findOne({
+        where: {
+            name: ingredientName,
         },
     });
     res.send({ data: ingredient });

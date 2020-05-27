@@ -64,19 +64,47 @@ export const updateRecipeById = async (req: Request, res: Response) => {
   }
 };
 
+const getAllIngredientsForRecipe = async (recipeId: number) =>{
+  const ingredientToRecipeRepository = await getRepository(IngredientToRecipe);
+  const ingredientToRecipe = await ingredientToRecipeRepository.find({where:{recipeId: recipeId}, relations:["ingredient"]});
+  if(ingredientToRecipe.length === 0){
+    return null;
+  }
+  var ingredients : Ingredient[] = [];
+  for(let i = 0; i < ingredientToRecipe.length; i++){
+    ingredients.push(ingredientToRecipe[i].ingredient);
+  }
+  return ingredients;
+
+}
+
+const removeIngredientFromRecipe = async (recipeId: number, ingredientId: number) => {
+  const ingredientToRecipeRepository = await getRepository(IngredientToRecipe);
+  const ingredientToRecipe = await ingredientToRecipeRepository.findOneOrFail({where:{recipeId: recipeId, ingredientId: ingredientId}});
+  await ingredientToRecipeRepository.delete(ingredientToRecipe);
+  return;
+}
+
 export const removeRecipeById = async (req: Request, res: Response) => {
   const recipeId = req.params.recipeId;
   const recipeRepository = await getRepository(Recipe);
+  const ingredients = await getAllIngredientsForRecipe(recipeId as unknown as number);
+  await ingredients?.forEach(ingredient => {
+    removeIngredientFromRecipe(recipeId as unknown as number, ingredient.id);
+  });
   try {
   const recipe = await recipeRepository.findOneOrFail({
       where: {
         id : recipeId,
       },
   });  
-  await recipeRepository.remove(recipe);
+  if(recipe !== null){
+      await recipeRepository.remove(recipe);
+  }
   res.send(200);
   } catch (error) {
-      res.send(400);
+    console.log(JSON.stringify(error));
+      res.sendStatus(400);
   }
 };
 

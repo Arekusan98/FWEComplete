@@ -1,5 +1,7 @@
 import React, { useState, useEffect, ReactChild, ReactChildren } from "react";
 import { RecipeDetail } from "./RecipeDetail";
+import { EmptyMessage } from "./ResultEmptyMessage";
+import { AddRecipe } from "./AddRecipe";
 
 export interface AllRecipesResponse {
   data: Recipe[];
@@ -35,17 +37,17 @@ export const Dashboard = () => {
   }, []);
 
   if(recipes === null){
-    return <EmptyMessage />;
+    return <EmptyMessage>Es wurden keine Rezepte gefunden</EmptyMessage>;
   }
 
   
 showRecipeDetailsButton = <button className="recipeDetailsButton" name={recipeDetailId.toString()} onClick={(e) => {setShowUseEffect(!showUseEffect); recipeDetailId = e.currentTarget.parentElement?.className as any as number}}>Rezept öffnen</button>
   var recipeObjects : any[] = [];
   recipes.data.forEach(recipe => {
-    recipeObjects.push(<GenerateRecipe recipe={recipe} detailsBtn={showRecipeDetailsButton}></GenerateRecipe>);
+    recipeObjects.push(<GenerateRecipe recipe={recipe} detailsBtn={showRecipeDetailsButton} setState={fetchRecipes}></GenerateRecipe>);
   });
 
-  return <>{(showUseEffect && <GenerateRecipeList>{recipeObjects}</GenerateRecipeList>) || (!showUseEffect && <RecipeDetail recipeId={recipeDetailId}/>)}</>;
+  return <>{(showUseEffect && <><GenerateRecipeList>{recipeObjects}</GenerateRecipeList><AddRecipe></AddRecipe></>) || (!showUseEffect && <RecipeDetail setState={setShowUseEffect} recipeId={recipeDetailId}/>)}</>;
 
 };
 
@@ -53,11 +55,7 @@ const GenerateRecipeList : React.FC<{}> = ({children}) => {
   return <section className="recipeContainer">{children}</section>
 }
 
-const EmptyMessage : React.FC<{}> = ({children}) => {
-  return <div>Es gibt keine Rezepte!</div>
-}
-
-const GenerateRecipe : React.FC<{recipe : Recipe, detailsBtn : any}> = ({children, recipe, detailsBtn}) => {
+const GenerateRecipe : React.FC<{recipe : Recipe, detailsBtn : any, setState: Function}> = ({children, recipe, detailsBtn, setState}) => {
   return <section className="recipe" id={recipe.id.toString()+"recipe"}>
   <section className="recipeName">Name: </section>
   <section className="recipeNameValue">{recipe.name}</section>
@@ -69,8 +67,8 @@ const GenerateRecipe : React.FC<{recipe : Recipe, detailsBtn : any}> = ({childre
   <section className="recipeServingSizeValue">{recipe.servingSize}</section>
   <section className="recipeAuthor">Autor: </section>
   <section className="recipeAuthorValue">{recipe.author}</section>
-  <section className={recipe.id.toString()}><button className={recipe.id.toString()} onClick={() => {deleteRecipe(recipe.id);}}>Dieses Rezept löschen</button>
-  {detailsBtn}</section>
+  <section className="recipeButtons"><section className={recipe.id.toString()}><button className={recipe.id.toString()} onClick={(e) => {deleteRecipe(recipe.id)}}>Dieses Rezept löschen</button>
+  {detailsBtn}</section></section>
   </section>
 }
 

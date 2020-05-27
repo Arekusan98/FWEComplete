@@ -62,20 +62,45 @@ exports.updateRecipeById = (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.sendStatus(400);
     }
 });
+const getAllIngredientsForRecipe = (recipeId) => __awaiter(void 0, void 0, void 0, function* () {
+    const ingredientToRecipeRepository = yield typeorm_1.getRepository(IngredientToRecipe_1.IngredientToRecipe);
+    const ingredientToRecipe = yield ingredientToRecipeRepository.find({ where: { recipeId: recipeId }, relations: ["ingredient"] });
+    if (ingredientToRecipe.length === 0) {
+        return null;
+    }
+    var ingredients = [];
+    for (let i = 0; i < ingredientToRecipe.length; i++) {
+        ingredients.push(ingredientToRecipe[i].ingredient);
+    }
+    return ingredients;
+});
+const removeIngredientFromRecipe = (recipeId, ingredientId) => __awaiter(void 0, void 0, void 0, function* () {
+    const ingredientToRecipeRepository = yield typeorm_1.getRepository(IngredientToRecipe_1.IngredientToRecipe);
+    const ingredientToRecipe = yield ingredientToRecipeRepository.findOneOrFail({ where: { recipeId: recipeId, ingredientId: ingredientId } });
+    yield ingredientToRecipeRepository.delete(ingredientToRecipe);
+    return;
+});
 exports.removeRecipeById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const recipeId = req.params.recipeId;
     const recipeRepository = yield typeorm_1.getRepository(Recipe_1.Recipe);
+    const ingredients = yield getAllIngredientsForRecipe(recipeId);
+    yield (ingredients === null || ingredients === void 0 ? void 0 : ingredients.forEach(ingredient => {
+        removeIngredientFromRecipe(recipeId, ingredient.id);
+    }));
     try {
         const recipe = yield recipeRepository.findOneOrFail({
             where: {
                 id: recipeId,
             },
         });
-        yield recipeRepository.remove(recipe);
+        if (recipe !== null) {
+            yield recipeRepository.remove(recipe);
+        }
         res.send(200);
     }
     catch (error) {
-        res.send(400);
+        console.log(JSON.stringify(error));
+        res.sendStatus(400);
     }
 });
 exports.addIngredientToRecipe = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

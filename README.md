@@ -70,4 +70,9 @@ Dadurch wird das Frontend standardmäßig auf Port 5000 gestartet.
 
 ### Test
 Das Backend kann mittels der beigefügten Postman API Aufrufe umfangreich getestet werden. Diese können nacheinander ausgeführt werden und die Ergebnisse sind in der Response erkennbar.
+Fälle, die noch nicht von den API-Aufrufen an sich abgedeckt sind:
+- Rezept/Zutat mit Namen eines bereits existierenden Elements hinzufügen. Dafür muss ein Element erstellt werden und dessen Name beim Erstellen des nächsten Elements wiederverwendet werden. Dies soll vom Server abgelehnt werden. 
+- Rezept/Zutat aktualisieren und Namen auf den eines bereits existierenden Elements ändern. Dafür müssen zwei Elemente bestehen. Beim aktualisieren eines Elements muss dann der Name in der Anfrage dem des anderen Elements entsprechen. Dies soll vom Server abgelehnt werden. 
+- ein leeres Rezept löschen.
+- ein Rezept mit Zutaten löschen. Dafür muss mindestens ein Rezept und eine Zutat bestehen. Mindestens eine Zutat muss dem Rezept zugefügt worden sein. Bei der Aktion wird die Zutat aus dem Rezept entfernt, die Zutat an sich bleibt aber bestehen. Der Server gibt Status OK.
 Das Frontend nicht. Sorry.

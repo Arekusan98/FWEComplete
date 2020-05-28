@@ -11,7 +11,7 @@ export class Ingredient {
     createdAt: string;
     @UpdateDateColumn()
     updatedAt: string;
-    @Column()
+    @Column({default: "empty.jpg"})
     imageUrl: string;
     @OneToMany(() => IngredientToRecipe, ingredientToRecipe => ingredientToRecipe.ingredient)
     public ingredientToRecipe!: IngredientToRecipe[];

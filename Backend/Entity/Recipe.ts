@@ -13,11 +13,11 @@ export class Recipe {
     updatedAt: string;
     @Column()
     cookingInstructions: string;
-    @Column()
-    rating: number;
-    @Column()
+    @Column({default: 1})
+    rating: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+    @Column({default: "unknown"})
     author: string;
-    @Column()
+    @Column({default: 4})
     servingSize: number;
     @OneToMany(() => IngredientToRecipe, ingredientToRecipe => ingredientToRecipe.recipe,
     {cascade: true})

@@ -36,15 +36,15 @@ let Recipe = /** @class */ (() => {
         __metadata("design:type", String)
     ], Recipe.prototype, "cookingInstructions", void 0);
     __decorate([
-        typeorm_1.Column(),
+        typeorm_1.Column({ default: 1 }),
         __metadata("design:type", Number)
     ], Recipe.prototype, "rating", void 0);
     __decorate([
-        typeorm_1.Column(),
+        typeorm_1.Column({ default: "unknown" }),
         __metadata("design:type", String)
     ], Recipe.prototype, "author", void 0);
     __decorate([
-        typeorm_1.Column(),
+        typeorm_1.Column({ default: 4 }),
         __metadata("design:type", Number)
     ], Recipe.prototype, "servingSize", void 0);
     __decorate([

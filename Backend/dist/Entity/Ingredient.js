@@ -32,7 +32,7 @@ let Ingredient = /** @class */ (() => {
         __metadata("design:type", String)
     ], Ingredient.prototype, "updatedAt", void 0);
     __decorate([
-        typeorm_1.Column(),
+        typeorm_1.Column({ default: "empty.jpg" }),
         __metadata("design:type", String)
     ], Ingredient.prototype, "imageUrl", void 0);
     __decorate([

@@ -1,0 +1,559 @@
+{
+	"info": {
+		"_postman_id": "f44efe89-534c-4093-8606-81f33ed2dae3",
+		"name": "FWE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New Recipe All Values",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Testrezept5\",\n\"servingSize\":\"5\",\n\"cookingInstructions\":\"Vorbereitung, Zubereitung, Essen\",\n\"author\":\"Alexander Manger\",\n\"rating\":5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Recipe Only Necessary Attributes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Testrezept6\",\n\"cookingInstructions\":\"Vorbereitung, Zubereitung, Essen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Recipe Invalid Input",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"\",\n\"servingSize\":\"5\",\n\"cookingInstructions\":\"\",\n\"author\":\"Alexander Manger\",\n\"rating\":55\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Ingredient To Recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": \"500g\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/1/ingredients/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"1",
+						"ingredients",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Ingredient To Recipe Invalid Input",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/1/ingredients/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"1",
+						"ingredients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"UpdatedRecipe\",\n\"servingSize\":\"5\",\n\"cookingInstructions\":\"Vorbereitung, Zubereitung, Essen\",\n\"author\":\"Alexander Manger\",\n\"rating\":5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe Invalid Input",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"\",\n\"cookingInstructions\":\"\",\n\"rating\":55\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Ingredient From Recipe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/1/ingredients/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"1",
+						"ingredients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/recipe/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ingredients Of Recipe",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/1/ingredients",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"1",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Recipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/recipe",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipe By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/recipe/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Ingredient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Zwiebel\",\n\"imageUrl\":\"some.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Ingredient Only Necessary Attributes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Testzutat\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Ingredient Invalid Input",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Ingredient",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Knoblauch\",\n\"imageUrl\" : \"fancyPicture3.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Ingredient Invalid Input",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"\",\n\"imageUrl\" : \"fancyPicture.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ingredient By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/ingredient/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Ingredients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/ingredient",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ingredient By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/ingredient/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ingredient By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/ingredient/name/Testzutat",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"name",
+						"Testzutat"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

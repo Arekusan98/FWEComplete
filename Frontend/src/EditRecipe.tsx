@@ -14,7 +14,7 @@ export const EditRecipe : React.FC<{recipe: Recipe, editHandler: Function}> = ({
 
 const EditRecipeInterface : React.FC<{recipe: Recipe, editHandler: Function}> = ({children, recipe, editHandler}) => {
     return <>
-    <form className="editRecipeForm">
+    <form className="editRecipeForm" onSubmit={(e)=>{updateRecipe(e.currentTarget, recipe.id).then(editHandler())}}>
         <label>Name</label>
         <input type="text" name="name" defaultValue={recipe.name} required></input>
         <label>Kochanweisungen</label>
@@ -25,7 +25,7 @@ const EditRecipeInterface : React.FC<{recipe: Recipe, editHandler: Function}> = 
         <input type="number" name="rating" defaultValue={recipe.rating} min="1" max="10" step="1"></input>
         <label>Portionsgröße</label>
         <input type="number" name="size" defaultValue={recipe.servingSize}></input>
-        <button type="button" onClick={(e)=>{updateRecipe(e.currentTarget.parentElement, recipe.id).then(editHandler())}}>Speichern</button>
+        <button type="submit">Speichern</button>
     </form>
     </>
 }
@@ -39,9 +39,9 @@ async function updateRecipe(recipeForm :HTMLElement | null, recipeId: number){
     var jsonRequestBody : RecipeRequest = {
         name: "",
         cookingInstructions: "",
-        rating: 0,
+        rating: 1,
         author: "",
-        servingSize: 0
+        servingSize: 1
     };
 
     for (let i = 0; i <recipeForm.children.length; i++){
@@ -75,5 +75,6 @@ const updateRecipeOnDatabase = async (jsonRequestBody: RecipeRequest, recipeId: 
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(jsonRequestBody)
       }
-      await fetch("http://localhost:3000/api/recipe/"+recipeId, requestOptions).then(response => response.json());
+      
+      await fetch("http://localhost:3000/api/recipe/"+recipeId, requestOptions);
 }

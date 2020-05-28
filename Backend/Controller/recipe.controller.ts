@@ -24,8 +24,10 @@ const validateInput = async (name: string, cookingInstructions: string, rating: 
           name: name
       }
     });
-    if(recipe?.id != id){
-      return false;
+    if(recipe){
+      if(recipe.id != id){
+        return false;
+      }  
     }
   }
 
@@ -100,7 +102,6 @@ export const updateRecipeById = async (req: Request, res: Response) => {
   recipe.cookingInstructions = cookingInstructions;
   recipe.author = author;
   recipe.rating = rating;
-  
   const updatedRecipe = await recipeRepository.save(recipe);
   return res.send({data: updatedRecipe});
  

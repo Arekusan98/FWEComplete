@@ -34,8 +34,10 @@ const validateInput = (name, cookingInstructions, rating, isBeingUpdated, id, re
                 name: name
             }
         });
-        if ((recipe === null || recipe === void 0 ? void 0 : recipe.id) != id) {
-            return false;
+        if (recipe) {
+            if (recipe.id != id) {
+                return false;
+            }
         }
     }
     if (rating !== null) {

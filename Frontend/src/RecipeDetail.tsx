@@ -26,6 +26,7 @@ export const RecipeDetail : React.FC<{recipeId : number, setState: Function}> = 
     useEffect(() => {
         fetchRecipe();
         fetchIngredients();
+        // eslint-disable-next-line
     }, []);
 
     if(recipe === null){
@@ -33,7 +34,9 @@ export const RecipeDetail : React.FC<{recipeId : number, setState: Function}> = 
     }
 
     if(ingredients === null){
-        return <><EmptyMessage>Keine Zutaten für dieses Rezept gefunden</EmptyMessage><GenerateRecipe recipe={recipe}></GenerateRecipe><AddIngredient recipeId={recipeId} addHandler={fetchIngredients}/></>
+        return <><GenerateRecipe recipe={recipe}><EmptyMessage>Keine Zutaten für dieses Rezept gefunden</EmptyMessage></GenerateRecipe><EditRecipe recipe={recipe} editHandler={fetchRecipe}></EditRecipe><AddIngredient recipeId={recipeId} addHandler={fetchIngredients}/>
+        <section><button className="closeRecipe" onClick={() => setState(true)}>Rezept schließen</button></section>
+        </>
     }
 
     var ingredientObjects : any[] = [];
@@ -44,8 +47,9 @@ export const RecipeDetail : React.FC<{recipeId : number, setState: Function}> = 
     
 
     
-    return <><GenerateRecipe recipe={recipe}>{ingredientObjects}</GenerateRecipe><AddIngredient recipeId={recipeId} addHandler={fetchIngredients}></AddIngredient><EditRecipe recipe={recipe} editHandler={fetchRecipe}></EditRecipe>
-    <button onClick={() => setState(true)}>Rezept schließen</button>
+    return <><EditRecipe recipe={recipe} editHandler={fetchRecipe}></EditRecipe><GenerateRecipe recipe={recipe}>{ingredientObjects}</GenerateRecipe><AddIngredient recipeId={recipeId} addHandler={fetchIngredients}></AddIngredient>
+    <section><button className="closeRecipe" onClick={() => setState(true)}>Rezept schließen</button></section>
+    
     </>  
 }
 
@@ -88,6 +92,7 @@ export const IngredientAmount : React.FC<{recipeId : number, ingredientId: numbe
     
   useEffect(() => {
     fetchIngredientToRecipe();
+// eslint-disable-next-line
   }, []);
 
   if(ingredientToRecipe === null){

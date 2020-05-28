@@ -14,14 +14,14 @@ export const AddIngredient : React.FC<{recipeId: number, addHandler: Function}> 
 
 const AddIngredientInterface : React.FC<{recipeId: number, addHandler : Function}> = ({children, recipeId, addHandler}) => {
     return <>
-    <form className="addIngredientForm">
+    <form className="addIngredientForm" onSubmit={(e)=>{validateAndSave(e.currentTarget, recipeId).then(addHandler())}}>
         <label>Name</label>
         <input type="text" name="name" required></input>
         <label>Menge</label>
         <input type="text" name="amount" required></input>
         <label>Bildpfad</label>
         <input type="text" name="imageUrl"></input>
-        <button type="button" onClick={(e)=>{validateAndSave(e.currentTarget.parentElement, recipeId).then(addHandler())}}>Hinzufügen</button>
+        <button type="submit">Hinzufügen</button>
     </form>
     </>
 }

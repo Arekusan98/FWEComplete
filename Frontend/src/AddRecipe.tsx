@@ -14,7 +14,7 @@ export const AddRecipe = () => {
 
 const AddNewRecipeInterface = () => {
     return <>
-    <form className="addRecipeForm">
+    <form className="addRecipeForm" onSubmit={(e)=>{validateAndSave(e.currentTarget)}}>
         <label>Name</label>
         <input type="text" name="name" required></input>
         <label>Kochanweisungen</label>
@@ -25,7 +25,7 @@ const AddNewRecipeInterface = () => {
         <input type="number" name="rating" min="1" max="10" step="1"></input>
         <label>Portionsgröße</label>
         <input type="number" name="size"></input>
-        <button type="button" onClick={(e)=>{validateAndSave(e.currentTarget.parentElement)}}>Speichern</button>
+        <button type="submit">Speichern</button>
     </form>
     </>
 }

@@ -75,4 +75,3 @@ Fälle, die noch nicht von den API-Aufrufen an sich abgedeckt sind:
 - Rezept/Zutat aktualisieren und Namen auf den eines bereits existierenden Elements ändern. Dafür müssen zwei Elemente bestehen. Beim aktualisieren eines Elements muss dann der Name in der Anfrage dem des anderen Elements entsprechen. Dies soll vom Server abgelehnt werden. 
 - ein leeres Rezept löschen.
 - ein Rezept mit Zutaten löschen. Dafür muss mindestens ein Rezept und eine Zutat bestehen. Mindestens eine Zutat muss dem Rezept zugefügt worden sein. Bei der Aktion wird die Zutat aus dem Rezept entfernt, die Zutat an sich bleibt aber bestehen. Der Server gibt Status OK.
-Das Frontend nicht. Sorry.

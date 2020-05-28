@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Recipe, RecipeResponse, RecipeRequest } from "./Interfaces/Recipe";
+import { RecipeRequest } from "./Interfaces/Recipe";
 
 export const AddRecipe = () => {
     const [showUseEffect, setShowUseEffect] = useState(false);
@@ -16,13 +16,13 @@ const AddNewRecipeInterface = () => {
     return <>
     <form className="addRecipeForm">
         <label>Name</label>
-        <input type="text" name="name"></input>
+        <input type="text" name="name" required></input>
         <label>Kochanweisungen</label>
-        <input type="textarea" name="instructions"></input>
+        <input type="textarea" name="instructions" required></input>
         <label>Autor</label>
         <input type="text" name="author"></input>
         <label>Bewertung</label>
-        <input type="number" name="rating"></input>
+        <input type="number" name="rating" min="1" max="10" step="1"></input>
         <label>Portionsgröße</label>
         <input type="number" name="size"></input>
         <button type="button" onClick={(e)=>{validateAndSave(e.currentTarget.parentElement)}}>Speichern</button>

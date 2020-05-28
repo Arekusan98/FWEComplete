@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { IngredientRequestBody, FormIngredient, singleIngredientResponse } from "./Interfaces/Ingredient";
-import { RecipeDetail } from "./RecipeDetail";
-import ReactDOM, { render } from "react-dom";
 
 export const AddIngredient : React.FC<{recipeId: number, addHandler: Function}> = ({children, recipeId, addHandler}) => {
     const [showUseEffect, setShowUseEffect] = useState(false);
@@ -18,10 +16,10 @@ const AddIngredientInterface : React.FC<{recipeId: number, addHandler : Function
     return <>
     <form className="addIngredientForm">
         <label>Name</label>
-        <input type="text" name="name"></input>
+        <input type="text" name="name" required></input>
         <label>Menge</label>
-        <input type="text" name="amount"></input>
-        <label>Bild</label>
+        <input type="text" name="amount" required></input>
+        <label>Bildpfad</label>
         <input type="text" name="imageUrl"></input>
         <button type="button" onClick={(e)=>{validateAndSave(e.currentTarget.parentElement, recipeId).then(addHandler())}}>Hinzufügen</button>
     </form>

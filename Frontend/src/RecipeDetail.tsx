@@ -6,8 +6,6 @@ import { RecipeResponse } from "./Interfaces/Recipe";
 import { EmptyMessage } from "./ResultEmptyMessage";
 import { AddIngredient} from "./AddIngredientToRecipe";
 import { EditRecipe } from "./EditRecipe";
-import { Dashboard } from "./Dashboard";
-import ReactDOM from "react-dom";
 
 
 export const RecipeDetail : React.FC<{recipeId : number, setState: Function}> = ({recipeId, setState}) => {

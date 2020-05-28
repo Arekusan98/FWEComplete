@@ -68,10 +68,21 @@ npx serve
 ```
 Dadurch wird das Frontend standardmäßig auf Port 5000 gestartet.
 
-### Test
+### Test Hausaufgabe 01 (Backend)
 Das Backend kann mittels der beigefügten Postman API Aufrufe umfangreich getestet werden. Diese können nacheinander ausgeführt werden und die Ergebnisse sind in der Response erkennbar.
 Fälle, die noch nicht von den API-Aufrufen an sich abgedeckt sind:
 - Rezept/Zutat mit Namen eines bereits existierenden Elements hinzufügen. Dafür muss ein Element erstellt werden und dessen Name beim Erstellen des nächsten Elements wiederverwendet werden. Dies soll vom Server abgelehnt werden. 
 - Rezept/Zutat aktualisieren und Namen auf den eines bereits existierenden Elements ändern. Dafür müssen zwei Elemente bestehen. Beim aktualisieren eines Elements muss dann der Name in der Anfrage dem des anderen Elements entsprechen. Dies soll vom Server abgelehnt werden. 
 - ein leeres Rezept löschen.
 - ein Rezept mit Zutaten löschen. Dafür muss mindestens ein Rezept und eine Zutat bestehen. Mindestens eine Zutat muss dem Rezept zugefügt worden sein. Bei der Aktion wird die Zutat aus dem Rezept entfernt, die Zutat an sich bleibt aber bestehen. Der Server gibt Status OK.
+
+### Test Hausaufgabe 01 (Frontend)
+##### E2E Tests
+- Der Nutzer öffnet die Seite und erstellt ein Rezept. Dieses wird der Datenbank hinzugefügt.
+- Der Nutzer öffnet die Seite und löscht ein Rezept. Dieses wird dann ebenfalls aus der Datenbank entfernt.
+- Der Nutzer öffnet die Seite und löscht ein Rezept, dem Zutaten zugewiesen sind. Alle Verbindungen aller Zutaten mit dem Rezept und das Rezept selbst werden aus der Datenbank entfernt.
+- Der Nutzer öffnet die Seite und öffnet ein Rezept. Daraufhin erscheinen alle Details zum Rezept.
+- Der Nutzer öffnet die Seite und öffnet ein Rezept. Daraufhin erscheinen alle Details zum Rezept. Mit dem Zutat hinzufügen Formular fügt er dem Rezept eine Zutat hinzu, die dem System noch nicht bekannt ist. In der Datenbank wird die Zutat dem Rezept hinzugefügt und erstellt.
+- Der Nutzer öffnet die Seite und öffnet ein Rezept. Daraufhin erscheinen alle Details zum Rezept. Mit dem Zutat hinzufügen Formular fügt er dem Rezept eine Zutat zu, die bereits bei anderen Rezepten verwendet wird. In der Datenbank wird keine neue Zutat erstellt, sondern eine bestehende dem Rezept hinzugefügt.
+- Der Nutzer öffnet die Seite und öffnet ein Rezept. Daraufhin erscheinen alle Details zum Rezept. Mit dem Zutat entfernen Knopf entfernt er aus dem Rezept eine Zutat. In der Datenbank wird die Verbindung von Zutat und Rezept entfernt, Rezept und Zutat bleiben jedoch bestehen.
+- Der Nutzer öffnet die Seite und öffnet ein Rezept. Daraufhin erscheinen alle Details zum Rezept. Mit dem Rezept bearbeiten Formular ändert er einige Werte des Rezepts. Diese werden dann in der Datenbank aktualisiert. 

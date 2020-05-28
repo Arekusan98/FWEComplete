@@ -16,13 +16,13 @@ const EditRecipeInterface : React.FC<{recipe: Recipe, editHandler: Function}> = 
     return <>
     <form className="editRecipeForm">
         <label>Name</label>
-        <input type="text" name="name" defaultValue={recipe.name}></input>
+        <input type="text" name="name" defaultValue={recipe.name} required></input>
         <label>Kochanweisungen</label>
-        <input type="textarea" name="instructions" defaultValue={recipe.cookingInstructions}></input>
+        <input type="textarea" name="instructions" defaultValue={recipe.cookingInstructions} required></input>
         <label>Autor</label>
         <input type="text" name="author" defaultValue={recipe.author}></input>
         <label>Bewertung</label>
-        <input type="number" name="rating" defaultValue={recipe.rating}></input>
+        <input type="number" name="rating" defaultValue={recipe.rating} min="1" max="10" step="1"></input>
         <label>Portionsgröße</label>
         <input type="number" name="size" defaultValue={recipe.servingSize}></input>
         <button type="button" onClick={(e)=>{updateRecipe(e.currentTarget.parentElement, recipe.id).then(editHandler())}}>Speichern</button>

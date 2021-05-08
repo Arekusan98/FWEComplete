@@ -12,7 +12,7 @@
     "node": "^14.2.0",
     "reflect-metadata": "^0.1.13",
     "serve": "^11.3.1",
-    "typeorm": "^0.2.24",
+    "typeorm": "^0.2.25",
     "typescript": "^3.9.2"
   },
   "devDependencies": {
